@@ -103,7 +103,92 @@ _.filter = function (arr,cb) {
 
 const videoData = [];
 
-_.filter(videoData, function(suspectObject) {
+const suspects = _.filter(videoData, function(suspectObject) {
 	return suspectObject.present; /// present is a key true or falst
 })
+
+const suspectsName = .map( suspects, suspect => {
+	return suspect.name; // return just the name of our filtered above
+})
+
+
+
+///// arrow functions 
+
+// if only 1 param it doesnt need to be wrapped in parens
+// if 1 line it doesnt need to be wrapped in curlys
+// the this value is from the parent scope, no this value on the arrow func	
+
+
+
+/// Template strings //
+//add var names wrapped in curlys
+
+var nameImprover = (name, adj) => {
+	return `Col ${name} Mc ${adj} pants`;
+};
+
+var a = 5;
+var b = 10;
+console.log(`Fifteen is ${a + b} and
+not ${2 * a + b}.`);
+// "Fifteen is 15 and
+// not 20."
+
+
+
+const createTuple = (a,b,c,d) => {
+	return [[a,c],[b,d]];
+}
+createTuple('It', 'be','could','anyone','no one');   // no one was not picked up
+//  
+
+
+
+// Spread operator
+
+const createTuple = (a,b,c, ...d) => {
+	return [[a,c],[b,d]];
+}
+createTuple('It', 'be','could','anyone','no one');
+
+//  [['It', 'could'], ['be', ['anyone, 'no one']]] 
+
+
+
+/// Arguments keyword ////// use when we dont know how many args we will get
+
+const createTuple = (a,b,c,d) => {
+	console.log(arguments);  //  undefined with arrow  with function keyword it will be 
+	return [[a,c],[b,d]];    // it be could anyone no one
+}
+createTuple('It', 'be','could','anyone','no one');
+
+
+//// Default params  //////
+
+const add = function (a, b = 2) {
+	console.log(arguments); // logs [3]
+	return a + b;
+};
+add(3); // 5
+
+
+
+// Array like objects   /// and array.from ES6 feature
+
+const constructArr = function () {
+	const arr = Array.prototype.slice.call(arguments); // this takes a array like object and 
+				Array.from(arguments) ///ES6 new 						//turns it into an array
+	return arr.join(' ');
+};
+constructArr('was', 'it', 'in');
+
+
+
+
+
+
+
+
 

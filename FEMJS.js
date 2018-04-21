@@ -184,7 +184,46 @@ const constructArr = function () {
 };
 constructArr('was', 'it', 'in');
 
+////currying
 
+//when you can call a function with different arguments at different times.
+
+var abc = function(a,b) {
+	return[a,b];
+};
+
+var curried = _.curry(abc);
+
+curried(1)(2) // [1,2]
+
+const curry = (fn) => { //abc
+	return (arg) => {  //1
+		return (arg2) => { //2
+			return fn(arg, arg2)
+		}
+	}
+}
+
+/////// Compose 
+
+const consider = (name) => {
+	return `I think it could be...${name}`;
+};
+
+const exclaim = (statement) => {
+	return `${statement.toUpperCase()} !`;
+};
+
+const blame = _.compose(consider, exclaim);
+
+blame('you');
+
+const compose = (fn, fn2) => {
+	return (arg) => { // prob no arrow here is best
+		const result = fn2(arg);
+		return fn(result);
+	};
+};
 
 
 
